@@ -475,6 +475,10 @@ LPCNET_EXPORT int lpcnet_encoder_init(LPCNetEncState *st) {
 LPCNET_EXPORT LPCNetEncState *lpcnet_encoder_create() {
   LPCNetEncState *st;
   st = malloc(lpcnet_encoder_get_size());
+  if(!st){
+    fprintf(stderr,"Error allocating memory lpcnet_encoder_create() \n");
+    exit(1);
+  }  
   lpcnet_encoder_init(st);
   return st;
 }
