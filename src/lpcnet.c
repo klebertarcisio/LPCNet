@@ -110,6 +110,10 @@ LPCNET_EXPORT LPCNetState *lpcnet_create()
 {
     LPCNetState *lpcnet;
     lpcnet = (LPCNetState *)calloc(lpcnet_get_size(), 1);
+    if(!lpcnet){
+    fprintf(stderr,"Error allocating memory lpcnet_create() \n");
+    exit(1);
+  }    
     lpcnet_init(lpcnet);
     return lpcnet;
 }
@@ -184,6 +188,10 @@ LPCNET_EXPORT LPCNetDecState *lpcnet_decoder_create()
 {
   LPCNetDecState *st;
   st = malloc(lpcnet_decoder_get_size());
+  if(!st){
+    fprintf(stderr,"Error allocating memory lpcnet_decoder_create() \n");
+    exit(1);
+  }  
   lpcnet_decoder_init(st);
   return st;
 }
