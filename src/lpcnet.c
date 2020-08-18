@@ -30,6 +30,7 @@
 
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "nnet_data.h"
 #include "nnet.h"
 #include "common.h"
@@ -110,6 +111,9 @@ LPCNET_EXPORT LPCNetState *lpcnet_create()
 {
     LPCNetState *lpcnet;
     lpcnet = (LPCNetState *)calloc(lpcnet_get_size(), 1);
+    if(!lpcnet){
+      return NULL;
+    }  
     lpcnet_init(lpcnet);
     return lpcnet;
 }
@@ -184,6 +188,9 @@ LPCNET_EXPORT LPCNetDecState *lpcnet_decoder_create()
 {
   LPCNetDecState *st;
   st = malloc(lpcnet_decoder_get_size());
+  if(!st){
+    return NULL;
+  }    
   lpcnet_decoder_init(st);
   return st;
 }
